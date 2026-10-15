@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mundo TI</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f2f5f3;--ink:#13202a;--mut:#445763;--acc:#0b7a68;--hair:#13202a22}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1418;--ink:#e8f0f3;--mut:#9fb3bd;--hair:#e8f0f326}}
+:root[data-theme="dark"]{--bg:#0d1418;--ink:#e8f0f3;--mut:#9fb3bd;--hair:#e8f0f326}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Avenir Next","Segoe UI",system-ui,sans-serif;line-height:1.55;overflow-x:hidden}
+#c{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+nav{position:fixed;left:0;right:0;top:0;z-index:5;padding:calc(env(safe-area-inset-top,0px) + 10px) 5vw 10px;background:linear-gradient(var(--bg) 70%,transparent);display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav a{flex:none;color:var(--mut);text-decoration:none;padding:7px 14px;border-radius:99px;font-size:.95rem;border:1px solid transparent;transition:.25s}
+nav a.on{color:var(--ink);border-color:var(--acc)}
+nav a:focus-visible,button:focus-visible,.row a:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+main{position:relative;z-index:1;padding:90px 6vw 12vh;min-height:100svh}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em}
+.ch{display:inline-block;transform:translateY(112%);animation:up .7s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i)*30ms)}
+@keyframes up{to{transform:none}}
+@keyframes fu{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+h1{font-size:clamp(2.6rem,11vw,6rem);line-height:1;letter-spacing:-.04em;margin:12vh 0 18px;max-width:11ch;font-weight:800}
+.lead{font-size:clamp(1.05rem,2.6vw,1.3rem);color:var(--mut);max-width:36ch;margin:0 0 7vh;animation:fu .8s .5s both}
+.row{display:grid;grid-template-columns:1fr;gap:4px;padding:28px 0;border-top:1px solid var(--hair);max-width:980px;background:linear-gradient(90deg,var(--bg) 60%,transparent);animation:fu .8s both;animation-delay:calc(.6s + var(--d)*.12s)}
+.row h2{font-size:clamp(1.3rem,3.6vw,1.9rem);margin:0;letter-spacing:-.02em}
+.row p{margin:0;color:var(--mut);max-width:46ch}
+.row a{color:var(--ink);text-decoration:none}
+.row a:hover h2{color:var(--acc)}
+@media(min-width:720px){.row{grid-template-columns:250px 1fr;gap:40px}}
+.fact{margin-top:6vh;padding:18px 20px;border-left:3px solid var(--acc);background:var(--bg);max-width:52ch;animation:fu .8s 1.6s both}
+#wipe{position:fixed;inset:0;z-index:20;background:var(--acc);transform:translateX(-101%);pointer-events:none}
+#intro{position:fixed;inset:0;z-index:30;background:#0a1114;color:#e8f0f3;display:flex;flex-direction:column;justify-content:flex-end;padding:0 7vw 12vh}
+#num{font-size:clamp(5rem,28vw,12rem);font-weight:800;letter-spacing:-.05em;line-height:.9}
+#msg{color:#9fb3bd;margin:10px 0 18px;min-height:1.6em}
+#bar{height:3px;background:#ffffff22}#bar i{display:block;height:100%;width:0;background:#5fe3c3}
+#skip{position:absolute;right:6vw;top:calc(env(safe-area-inset-top,0px) + 16px);background:none;border:1px solid #ffffff44;color:#e8f0f3;border-radius:99px;padding:6px 14px;font:inherit;font-size:.85rem;cursor:pointer}
+footer{position:relative;z-index:1;padding:0 6vw 7vh;color:var(--mut);font-size:.9rem}
+footer button{background:none;border:0;color:var(--ink);font:inherit;text-decoration:underline;cursor:pointer;padding:0}
+</style>
+</head>
+<body>
+<canvas id="c" aria-hidden="true"></canvas>
+<nav id="nav" aria-label="Páginas"></nav>
+<main id="pg"></main>
+<footer>Mundo TI · <button id="replay">Rever abertura</button></footer>
+<div id="wipe"></div>
+<div id="intro"><button id="skip">Pular</button><div id="num">0</div><div id="msg"></div><div id="bar"><i id="bi"></i></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+var PAGES=[
+{id:'inicio',n:'Início',h:170,t:'A TI mantém tudo ligado.',l:'Redes, nuvem, segurança, dados e software: o que faz o mundo digital funcionar, explicado do começo.',s:null,f:'Toque numa área para entrar. A rede 3D muda de cor e gira a cada página.'},
+{id:'redes',n:'Redes',h:200,t:'Redes: computadores conversando.',l:'Toda mensagem, vídeo ou site atravessa uma rede antes de chegar a você.',s:[['Endereço IP','Cada dispositivo tem um endereço, como uma casa, para que os dados saibam aonde ir.'],['Roteadores','Escolhem o melhor caminho para cada pacote de dados atravessar a rede.'],['Wi-Fi e cabo','O Wi-Fi é prático; o cabo costuma ser mais estável e rápido.'],['Protocolos','Regras comuns, como HTTP e TCP, permitem que máquinas diferentes se entendam.']],f:'Um e-mail pode passar por dezenas de roteadores em menos de um segundo.'},
+{id:'nuvem',n:'Nuvem',h:215,t:'Nuvem: computação alugada.',l:'Em vez de comprar um servidor, você usa o de um data center e paga pelo uso.',s:[['Armazenamento','Fotos e arquivos ficam guardados em servidores e aparecem em qualquer aparelho.'],['Servidores virtuais','Um computador físico é dividido em vários computadores virtuais independentes.'],['Escala','O serviço cresce sozinho quando muita gente acessa ao mesmo tempo.'],['Backup','Cópias em locais diferentes reduzem o risco de perder tudo.']],f:'A nuvem não é mágica: são computadores reais em prédios cheios de ar-condicionado.'},
+{id:'seguranca',n:'Segurança',h:350,t:'Segurança: proteger o que importa.',l:'A maioria dos ataques explora descuido humano, não falhas de máquina.',s:[['Senhas fortes','Use frases longas, diferentes em cada conta, guardadas em um gerenciador de senhas.'],['Verificação em duas etapas','Mesmo com a senha vazada, o golpista não entra sem o segundo código.'],['Phishing','Mensagens falsas imitam bancos e lojas para roubar seus dados. Desconfie de urgência.'],['Atualizações','Cada atualização fecha falhas que já são conhecidas por criminosos.']],f:'Se a mensagem pede pressa e um clique, pare e confirme por outro canal.'},
+{id:'dados',n:'Dados',h:35,t:'Dados: informação que vira decisão.',l:'Quem guarda e analisa bem os dados entende melhor o que acontece e o que vem depois.',s:[['Bancos de dados','Organizam informações em tabelas para consultas rápidas e seguras.'],['Análise','Gráficos e cálculos mostram padrões que olhando linha por linha ninguém vê.'],['Privacidade','Leis como a LGPD dão a você direitos sobre seus dados pessoais.'],['Inteligência artificial','Modelos aprendem padrões em grandes volumes de dados para prever ou gerar conteúdo.']],f:'Dado sozinho é só número. Contexto é o que o transforma em informação.'},
+{id:'software',n:'Software',h:280,t:'Software: instruções que rodam.',l:'Todo app, site e jogo é um conjunto de instruções escritas por pessoas.',s:[['Linguagens','Python, JavaScript e outras permitem dar ordens ao computador de forma legível.'],['Front-end e back-end','Uma parte é o que você vê na tela; a outra processa e guarda os dados.'],['Versionamento','Ferramentas como Git guardam cada mudança do código e permitem voltar atrás.'],['Testes','Programas automáticos conferem se o software continua funcionando após cada alteração.']],f:'Todo programador vive o mesmo ritual: escrever, errar, corrigir e repetir.'},
+{id:'carreiras',n:'Carreiras',h:130,t:'Carreiras: por onde começar.',l:'A TI tem espaço para quem gosta de pessoas, de lógica, de criar ou de proteger.',s:[['Suporte técnico','Resolve problemas de usuários e é uma porta de entrada comum na área.'],['Infraestrutura','Cuida de redes, servidores e nuvem para tudo ficar no ar.'],['Desenvolvimento','Cria apps, sites e sistemas, do planejamento ao lançamento.'],['Segurança e dados','Protege sistemas ou transforma dados em respostas para o negócio.']],f:'Comece por algo pequeno: monte um site, configure uma rede em casa, ou estude lógica.'}];
+var cur=0,busy=false,root=document.documentElement,pg=document.getElementById('pg'),nav=document.getElementById('nav'),wipe=document.getElementById('wipe');
+function dark(){var m=matchMedia('(prefers-color-scheme: dark)').matches;return root.dataset.theme?root.dataset.theme==='dark':m}
+function col(h){return 'hsl('+h+','+(dark()?'75%':'80%')+','+(dark()?'62%':'28%')+')'}
+function split(t){var i=0;return t.split(' ').map(function(w){return '<span class="w">'+w.split('').map(function(c){return '<span class="ch" style="--i:'+(i++)+'">'+c+'</span>'}).join('')+'</span>'}).join(' ')}
+nav.innerHTML=PAGES.map(function(p,i){return '<a href="#/'+p.id+'" data-i="'+i+'">'+p.n+'</a>'}).join('');
+function render(i){
+ var p=PAGES[i],h='<h1>'+split(p.t)+'</h1><p class="lead">'+p.l+'</p>';
+ if(p.s)h+=p.s.map(function(s,k){return '<div class="row" style="--d:'+k+'"><h2>'+s[0]+'</h2><p>'+s[1]+'</p></div>'}).join('');
+ else h+=PAGES.slice(1).map(function(q,k){return '<div class="row" style="--d:'+k+'"><a href="#/'+q.id+'"><h2>'+q.n+'</h2></a><p>'+q.l+'</p></div>'}).join('');
+ h+='<div class="fact">'+p.f+'</div>';
+ pg.innerHTML=h;scrollTo(0,0);
+ root.style.setProperty('--acc',col(p.h));
+ [].forEach.call(nav.children,function(a,k){a.classList.toggle('on',k==i);if(k==i)a.scrollIntoView({inline:'center',block:'nearest'})});
+ document.title=p.n+' · Mundo TI';
+ G.setHue(col(p.h),i);
+}
+function go(i,first){
+ if(busy||(i===cur&&!first))return;
+ if(first){cur=i;render(i);return}
+ busy=true;wipe.style.background=col(PAGES[i].h);G.kick();
+ var a=wipe.animate([{transform:'translateX(-101%)'},{transform:'translateX(0)'}],{duration:420,easing:'cubic-bezier(.7,0,.3,1)',fill:'forwards'});
+ a.onfinish=function(){cur=i;render(i);
+  var b=wipe.animate([{transform:'translateX(0)'},{transform:'translateX(101%)'}],{duration:420,easing:'cubic-bezier(.7,0,.3,1)',fill:'forwards'});
+  b.onfinish=function(){wipe.getAnimations().forEach(function(x){x.cancel()});busy=false;if(idx()!==cur)go(idx())}}
+}
+function idx(){var id=location.hash.replace('#/','');for(var i=0;i<PAGES.length;i++)if(PAGES[i].id===id)return i;return 0}
+addEventListener('hashchange',function(){go(idx())});
+
+/* 3D */
+var G=(function(){
+var cv=document.getElementById('c');
+if(!window.THREE){cv.style.display='none';return{setHue:function(){},kick:function(){},start:function(){}}}
+var acc=new THREE.Color('#0b7a68');
+var r=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});r.setPixelRatio(Math.min(devicePixelRatio||1,2));
+var sc=new THREE.Scene(),cam=new THREE.PerspectiveCamera(50,1,.1,50);cam.position.z=8;
+var g=new THREE.Group();sc.add(g);
+var N=120,P=[],E=[],lp=[],i,j,ga=Math.PI*(3-Math.sqrt(5));
+for(i=0;i<N;i++){var y=1-2*(i+.5)/N,rd=Math.sqrt(1-y*y),a=i*ga,k=2.3+(Math.random()-.5)*.5;P.push(new THREE.Vector3(Math.cos(a)*rd*k,y*k,Math.sin(a)*rd*k))}
+for(i=0;i<N;i++)for(j=i+1;j<N;j++)if(P[i].distanceTo(P[j])<1.05){E.push([i,j]);lp.push(P[i].x,P[i].y,P[i].z,P[j].x,P[j].y,P[j].z)}
+var lg=new THREE.BufferGeometry();lg.setAttribute('position',new THREE.Float32BufferAttribute(lp,3));
+var lm=new THREE.LineBasicMaterial({color:acc,transparent:true,opacity:.4});g.add(new THREE.LineSegments(lg,lm));
+var pp=[];P.forEach(function(v){pp.push(v.x,v.y,v.z)});
+var pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.Float32BufferAttribute(pp,3));
+var pm2=new THREE.PointsMaterial({color:acc,size:.09});g.add(new THREE.Points(pg,pm2));
+var cm=new THREE.MeshBasicMaterial({color:acc,wireframe:true,transparent:true,opacity:.55});
+var core=new THREE.Mesh(new THREE.IcosahedronGeometry(1,1),cm);g.add(core);
+var pk=[],pmat=new THREE.MeshBasicMaterial({color:0xffb347});
+for(i=0;i<18;i++){var m=new THREE.Mesh(new THREE.SphereGeometry(.07,10,10),pmat);g.add(m);pk.push({m:m,e:Math.floor(Math.random()*E.length),t:Math.random(),s:.004+Math.random()*.006})}
+var mx=0,my=0,spin=0,pi=0,t0=performance.now(),started=false,t1=0,spd=1;
+addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+function size(){var w=innerWidth,h=innerHeight;r.setSize(w,h,false);cam.aspect=w/h;if(w>720)g.position.set(2.6,0,0);else g.position.set(0,1.7,0);cam.updateProjectionMatrix()}
+addEventListener('resize',size);size();
+function e3(x){x=Math.min(1,Math.max(0,x));return 1-Math.pow(1-x,3)}
+function loop(now){
+ var t=(now-t0)/1000,sy=scrollY/Math.max(1,document.body.scrollHeight-innerHeight);
+ var sc0=started?e3((now-t1)/2200):0;g.scale.setScalar(.001+sc0);
+ spin*=.94;
+ g.rotation.y+=.0025*spd+spin;g.rotation.x+=((my*.6+sy*.8)-g.rotation.x)*.05;g.rotation.z=mx*.3;
+ core.rotation.y=-t*.4;core.scale.setScalar(1+.12*Math.sin(t*1.5)+spin*3);
+ cam.position.z=8+sy*2;
+ pk.forEach(function(p){p.t+=p.s*spd*(1+spin*40);if(p.t>=1){p.t=0;p.e=Math.floor(Math.random()*E.length)}var e=E[p.e];p.m.position.lerpVectors(P[e[0]],P[e[1]],p.t)});
+ r.render(sc,cam);requestAnimationFrame(loop)}
+requestAnimationFrame(loop);
+return{
+ setHue:function(c,i){acc.set(c);lm.color.set(c);pm2.color.set(c);cm.color.set(c);spd=.8+(i%4)*.35},
+ kick:function(){spin=.12},
+ start:function(){started=true;t1=performance.now()}
+}})();
+
+/* abertura */
+var intro=document.getElementById('intro'),num=document.getElementById('num'),msg=document.getElementById('msg'),bi=document.getElementById('bi');
+var MSG=['Ligando os cabos…','Conectando à nuvem…','Protegendo os dados…','Compilando o código…','Tudo pronto.'];
+var timer=null;
+function runIntro(){
+ intro.style.display='flex';intro.style.transform='none';G.start();
+ var t0=performance.now(),D=3200;cancelAnimationFrame(timer);
+ (function step(now){
+  var k=Math.min(1,(now-t0)/D);num.textContent=Math.round(k*100);bi.style.width=k*100+'%';
+  msg.textContent=MSG[Math.min(4,Math.floor(k*5))];
+  if(k<1)timer=requestAnimationFrame(step);else setTimeout(close,350)
+ })(t0);
+}
+function close(){cancelAnimationFrame(timer);
+ var a=intro.animate([{transform:'translateY(0)'},{transform:'translateY(-100%)'}],{duration:800,easing:'cubic-bezier(.7,0,.3,1)',fill:'forwards'});
+ a.onfinish=function(){intro.style.display='none';a.cancel()}}
+document.getElementById('skip').onclick=close;
+document.getElementById('replay').onclick=function(){scrollTo(0,0);runIntro()};
+var first=true;try{first=!localStorage.getItem('ti_visto');localStorage.setItem('ti_visto','1')}catch(e){}
+go(idx(),true);
+if(first)runIntro();else{intro.style.display='none';G.start()}
+})();
+</script>
+</body>
+</html>
