@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>VendaPro — Aprenda a vender de verdade</title>
+<style>
+:root{--bg:#f4f7fb;--bg2:#fff;--tx:#0b1b2e;--mut:#52657c;--br:#dbe4ef;--ac:#0d9f6e;--ac2:#f2a900;--on:#fff;--sh:0 12px 32px rgba(11,27,46,.1);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#07111f;--bg2:#0d1c30;--tx:#eaf2fb;--mut:#9db1c8;--br:#1d3352;--ac:#34d399;--ac2:#fbbf24;--on:#052e1f;--sh:0 12px 32px rgba(0,0,0,.4)}}
+:root[data-theme="dark"]{--bg:#07111f;--bg2:#0d1c30;--tx:#eaf2fb;--mut:#9db1c8;--br:#1d3352;--ac:#34d399;--ac2:#fbbf24;--on:#052e1f;--sh:0 12px 32px rgba(0,0,0,.4)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg2)}
+h1,h2,h3{line-height:1.15;margin:0 0 .5em;letter-spacing:-.02em}
+.w{max-width:1080px;margin:auto;padding:0 20px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg2);border-bottom:1px solid var(--br)}
+header .w{display:flex;align-items:center;gap:10px;height:64px}
+.logo{font:800 20px system-ui,sans-serif;display:flex;align-items:center;gap:9px;cursor:pointer;background:none;border:0;color:inherit;padding:0}
+.logo i{width:32px;height:32px;border-radius:10px;background:linear-gradient(135deg,var(--ac),var(--ac2));display:grid;place-items:center;color:var(--on);font-style:normal;font-weight:900}
+nav{margin-left:auto;display:flex;gap:4px;align-items:center}
+.lk{background:none;border:0;color:var(--mut);font:inherit;font-weight:600;padding:8px 12px;border-radius:10px;cursor:pointer}.lk:hover{color:var(--tx)}
+.btn{border:0;border-radius:12px;padding:12px 20px;font:inherit;font-weight:700;cursor:pointer;background:linear-gradient(135deg,var(--ac),#10b981);color:var(--on);box-shadow:0 8px 20px rgba(16,185,129,.3);transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(16,185,129,.4)}
+.btn.o{background:none;color:var(--tx);box-shadow:none;border:1.5px solid var(--br)}
+.view{animation:in .5s both}@keyframes in{from{opacity:0;transform:translateY(14px)}}
+body[data-v=app] .mk{display:none}
+.hero{position:relative;padding:56px 20px 40px;display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.3;z-index:-1;animation:fl 9s ease-in-out infinite}
+@keyframes fl{50%{transform:translate(30px,-26px) scale(1.1)}}
+.tg{display:inline-block;background:var(--bg2);border:1px solid var(--br);border-radius:99px;padding:6px 14px;font-weight:600;font-size:14px;margin-bottom:16px}
+h1{font-size:clamp(34px,6vw,56px)}
+.gt{background:linear-gradient(90deg,var(--ac),var(--ac2),var(--ac));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 5s linear infinite}
+@keyframes sh{to{background-position:200% center}}
+.lead{color:var(--mut);font-size:18px;max-width:520px}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0}
+.stats{display:flex;gap:28px}.stats b{display:block;font-size:30px}.stats span{color:var(--mut);font-size:14px}
+.chat{background:var(--bg2);border:1px solid var(--br);border-radius:22px;padding:18px;box-shadow:var(--sh);display:flex;flex-direction:column;gap:10px;min-height:310px}
+.m{max-width:84%;padding:10px 14px;border-radius:16px;opacity:0;font-size:15px}
+.m.c{background:var(--br)}.m.v{background:var(--ac);color:var(--on);align-self:flex-end}.m.ok{align-self:center;background:var(--ac2);color:#2b1d00;font-weight:800}
+.chat.go .m{animation:pop .5s both}
+.chat.go .m:nth-child(1){animation-delay:.3s}.chat.go .m:nth-child(2){animation-delay:1.6s}.chat.go .m:nth-child(3){animation-delay:2.9s}.chat.go .m:nth-child(4){animation-delay:4.2s}.chat.go .m:nth-child(5){animation-delay:5.4s}
+@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.9)}to{opacity:1;transform:none}}
+.sec{padding:52px 0}.sec h2{font-size:clamp(26px,4vw,38px);text-align:center}.sub{color:var(--mut);text-align:center;max-width:560px;margin:0 auto 32px}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.cd{background:var(--bg2);border:1px solid var(--br);border-radius:18px;padding:22px;box-shadow:var(--sh);transition:transform .25s,opacity .7s}
+.cd:hover{transform:translateY(-6px)}.cd .e{font-size:34px;display:block;margin-bottom:8px}.cd h3{font-size:19px}.cd p{margin:0;color:var(--mut);font-size:15px}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s;transition-delay:var(--d,0s)}.rv.in{opacity:1;transform:none}
+.st{counter-reset:s;margin-top:18px}.st .cd{padding-top:40px}
+.st .cd::before{counter-increment:s;content:counter(s);position:absolute;top:-18px;left:22px;width:40px;height:40px;border-radius:50%;background:var(--ac);color:var(--on);display:grid;place-items:center;font-weight:800}
+.st .cd{position:relative}
+.mods{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}.mods span{background:var(--bg2);border:1px solid var(--br);padding:10px 16px;border-radius:99px;font-weight:600}
+.cta{margin:10px 0 50px;padding:40px 24px;border-radius:24px;text-align:center;background:linear-gradient(135deg,#064e3b,#0f766e);color:#fff}.cta h2{font-size:30px}
+footer{color:var(--mut);font-size:13px;text-align:center;padding:10px 20px 30px}
+.lg{min-height:calc(100vh - 100px);display:grid;place-items:center;padding:30px 20px}
+.card{width:min(420px,100%);background:var(--bg2);border:1px solid var(--br);border-radius:22px;padding:30px;box-shadow:var(--sh)}
+.card.shake{animation:sk .4s}@keyframes sk{25%{transform:translateX(-9px)}75%{transform:translateX(9px)}}
+label{display:block;font-weight:600;font-size:14px;margin:14px 0 6px}
+input{width:100%;padding:13px 14px;border-radius:12px;border:1.5px solid var(--br);background:var(--bg);color:var(--tx);font:inherit}
+input:focus{outline:2px solid var(--ac);border-color:transparent}
+.pw{position:relative}.pw .lk{position:absolute;right:4px;top:4px}
+#err{color:#e11d48;min-height:22px;font-size:14px;margin:10px 0}
+.top{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:22px 0 8px}
+.bar{flex:1;min-width:180px;height:12px;border-radius:9px;background:var(--br);overflow:hidden}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ac),var(--ac2));transition:width .8s cubic-bezier(.2,.8,.2,1)}
+.app{display:grid;grid-template-columns:300px 1fr;gap:20px;padding:10px 0 50px;align-items:start}
+.sb{background:var(--bg2);border:1px solid var(--br);border-radius:18px;padding:10px;position:sticky;top:calc(80px + env(safe-area-inset-top,0px));max-height:calc(100vh - 110px);overflow:auto}
+summary{cursor:pointer;font-weight:700;padding:10px}
+.ls{display:flex;width:100%;text-align:left;border:0;background:none;color:var(--mut);font:inherit;padding:8px 10px 8px 16px;border-radius:10px;cursor:pointer}
+.ls:hover,.ls.on{background:var(--br);color:var(--tx)}.ls.dn::after{content:"✓";margin-left:auto;color:var(--ac);font-weight:900}
+.ct{background:var(--bg2);border:1px solid var(--br);border-radius:18px;padding:28px;box-shadow:var(--sh);min-height:420px}.ct.sw{animation:in .4s both}
+.tag{color:var(--ac);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.05em}.ct h2{font-size:28px}.ct li{margin:6px 0}
+.tpl{background:var(--bg);border:1px dashed var(--br);border-radius:12px;padding:14px;white-space:pre-wrap;font:14px/1.55 ui-monospace,Menlo,monospace;margin:10px 0 6px}
+.cp{background:none;border:1.5px solid var(--br);color:var(--tx);border-radius:9px;padding:6px 12px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.nv{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}.nv .btn{padding:10px 16px}
+@media(max-width:820px){.hero,.app{grid-template-columns:1fr}.sb{position:static;max-height:260px}.stats{gap:18px}.mk{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv,.m{opacity:1;transform:none}}
+</style></head>
+<body data-v="home">
+<header><div class="w">
+<button class="logo" data-go="#/"><i>V</i>VendaPro</button>
+<nav><button class="lk mk" data-sc="aprender">O que aprender</button><button class="lk mk" data-sc="como">Como funciona</button>
+<button class="btn" id="nl" data-go="#/login">Entrar</button><button class="lk" id="out" hidden>Sair</button></nav>
+</div></header>
+<main>
+<section id="v-home" class="view">
+<div class="w hero">
+<i class="blob" style="width:300px;height:300px;background:var(--ac);left:-60px;top:20px"></i>
+<i class="blob" style="width:260px;height:260px;background:var(--ac2);right:-40px;top:220px;animation-delay:-4s"></i>
+<div><span class="tg">💼 Curso online de vendas</span>
+<h1>Aprenda a <span class="gt">vender mais</span> com técnica, escrita e persuasão</h1>
+<p class="lead">Um passo a passo simples para atrair clientes, responder objeções e fechar vendas com confiança. Estude no seu ritmo, até pelo celular.</p>
+<div class="row"><button class="btn" data-go="#/login">Entrar na área de membros</button><button class="btn o" data-sc="aprender">Ver o que vou aprender</button></div>
+<div class="stats"><div><b id="n1">0</b><span>módulos</span></div><div><b id="n2">0</b><span>aulas</span></div><div><b id="n3">0</b><span>modelos prontos</span></div></div></div>
+<div class="chat" id="chat" aria-label="Exemplo de conversa de vendas">
+<div class="m c">Achei meio caro…</div><div class="m v">Entendo! Posso te mostrar quanto esse problema já custa por mês?</div><div class="m c">Pode sim.</div><div class="m v">Então vamos começar pelo pacote ideal para você?</div><div class="m ok">✅ Venda fechada!</div></div>
+</div>
+<section class="sec" id="aprender"><div class="w"><h2 class="rv">O que você vai aprender</h2><p class="sub rv">Conteúdo direto ao ponto, para colocar em prática no mesmo dia.</p>
+<div class="g">
+<div class="cd rv" style="--d:.05s"><span class="e">🎯</span><h3>Técnicas de venda</h3><p>Do primeiro contato ao fechamento, com perguntas certas e um roteiro claro.</p></div>
+<div class="cd rv" style="--d:.15s"><span class="e">🧲</span><h3>Persuasão ética</h3><p>Gatilhos mentais usados com verdade, para convencer sem manipular.</p></div>
+<div class="cd rv" style="--d:.25s"><span class="e">✍️</span><h3>Escrita que vende</h3><p>Títulos, mensagens e ofertas que chamam atenção e levam à ação.</p></div>
+<div class="cd rv" style="--d:.35s"><span class="e">🛡️</span><h3>Objeções e fechamento</h3><p>Saiba responder “tá caro” e “vou pensar” e peça a venda sem medo.</p></div>
+</div></div></section>
+<section class="sec" id="como"><div class="w"><h2 class="rv">Como funciona</h2><p class="sub rv">Simples: entrar, estudar e aplicar.</p>
+<div class="g st">
+<div class="cd rv" style="--d:.05s"><h3>Entre na área de membros</h3><p>Use seu login e sua senha para acessar todo o conteúdo.</p></div>
+<div class="cd rv" style="--d:.2s"><h3>Estude uma aula por vez</h3><p>Textos curtos, exemplos e modelos de mensagem prontos para copiar.</p></div>
+<div class="cd rv" style="--d:.35s"><h3>Aplique e acompanhe</h3><p>Marque as aulas concluídas e veja seu progresso crescer.</p></div>
+</div></div></section>
+<section class="sec"><div class="w"><h2 class="rv">Dentro da área de membros</h2><p class="sub rv">Dez módulos para sair do básico e vender com método.</p><div class="mods rv" id="mp"></div></div></section>
+<div class="w"><div class="cta rv"><h2>Pronto para vender melhor?</h2><p>Entre com seu login e comece pela primeira aula.</p><button class="btn" data-go="#/login">Entrar agora</button></div></div>
+<footer>© VendaPro · Conteúdo educativo. Os resultados dependem da sua prática e do seu mercado.</footer>
+</section>
+<section id="v-login" class="view" hidden><div class="lg"><form class="card" id="f">
+<div class="logo" style="justify-content:center;margin-bottom:8px"><i>V</i>VendaPro</div>
+<h2 style="text-align:center;font-size:24px">Entrar na área de membros</h2>
+<p style="text-align:center;color:var(--mut);margin:0 0 6px">Use o login e a senha que você recebeu.</p>
+<label for="u">Usuário</label><input id="u" autocomplete="username" required>
+<label for="p">Senha</label><div class="pw"><input id="p" type="password" autocomplete="current-password" required><button type="button" class="lk" id="sp" aria-label="Mostrar senha">👁</button></div>
+<p id="err" role="alert"></p>
+<button class="btn" style="width:100%">Entrar</button>
+<p style="text-align:center;margin:14px 0 0"><button type="button" class="lk" data-go="#/">← Voltar ao início</button></p>
+</form></div></section>
+<section id="v-app" class="view" hidden><div class="w">
+<div class="top"><h2 style="margin:0;font-size:24px">Olá! 👋 Continue de onde parou</h2></div>
+<div class="top" style="padding-top:0"><div class="bar"><i id="pb"></i></div><span id="pt" style="color:var(--mut);font-size:14px"></span></div>
+<div class="app"><aside class="sb" id="sb"></aside><article class="ct" id="ct"></article></div>
+</div></section>
+</main>
+<script>
+const HASH="638f8eb22fe02830a97d4dea9eed3cdf2994eccec8d6569ee50ab77eafe96ac9";
+function sha(s){const K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+const rr=(x,n)=>(x>>>n)|(x<<(32-n));
+const by=Array.from(unescape(encodeURIComponent(s)),c=>c.charCodeAt(0));const l=by.length*8;by.push(0x80);while(by.length%64!==56)by.push(0);
+for(let i=7;i>=0;i--)by.push(i>3?0:(l>>>(i*8))&255);
+let H=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+for(let o=0;o<by.length;o+=64){const w=[];for(let i=0;i<16;i++)w[i]=(by[o+4*i]<<24)|(by[o+4*i+1]<<16)|(by[o+4*i+2]<<8)|by[o+4*i+3];
+for(let i=16;i<64;i++){const a=rr(w[i-15],7)^rr(w[i-15],18)^(w[i-15]>>>3),b=rr(w[i-2],17)^rr(w[i-2],19)^(w[i-2]>>>10);w[i]=(w[i-16]+a+w[i-7]+b)|0}
+let [a,b,c,d,e,f,g,h]=H;
+for(let i=0;i<64;i++){const S1=rr(e,6)^rr(e,11)^rr(e,25),ch=(e&f)^(~e&g),t1=(h+S1+ch+K[i]+w[i])|0,S0=rr(a,2)^rr(a,13)^rr(a,22),mj=(a&b)^(a&c)^(b&c),t2=(S0+mj)|0;h=g;g=f;f=e;e=(d+t1)|0;d=c;c=b;b=a;a=(t1+t2)|0}
+H=[H[0]+a,H[1]+b,H[2]+c,H[3]+d,H[4]+e,H[5]+f,H[6]+g,H[7]+h].map(x=>x|0)}
+return H.map(x=>(x>>>0).toString(16).padStart(8,'0')).join('')}
+const MODS=[
+{t:"Mentalidade e preparo",i:"🧠",l:[
+{t:"Vender é ajudar a decidir",h:`<p>Vender não é empurrar produto: é ajudar alguém a resolver um problema com segurança. Quem pensa assim vende com mais confiança e perde menos clientes.</p><ul><li>Antes de cada contato, responda: <b>quem é a pessoa, qual é o problema e que resultado ela quer?</b></li><li>Venda só o que realmente resolve. Confiança gera recompra e indicação.</li><li>Troque “preciso vender” por “preciso entender”.</li></ul>`},
+{t:"Rotina, metas e funil",h:`<p>Resultado de venda vem de hábito. Monte um funil simples e acompanhe os números toda semana.</p><ul><li><b>Funil:</b> contato → conversa → proposta → fechamento.</li><li>Defina metas de atividade (contatos e follow-ups por dia), não só de faturamento.</li><li><b>Taxa de conversão</b> = fechamentos ÷ conversas. Descubra onde você perde mais clientes e melhore ali.</li></ul>`}]},
+{t:"Conheça o cliente",i:"🎯",l:[
+{t:"Perguntas que abrem vendas",h:`<p>Quem pergunta bem vende melhor. Use perguntas abertas e escute mais do que fala. É a lógica do método SPIN:</p><ul><li><b>Situação:</b> “Como você faz isso hoje?”</li><li><b>Problema:</b> “O que mais te incomoda nisso?”</li><li><b>Implicação:</b> “O que acontece se nada mudar?”</li><li><b>Necessidade:</b> “Como seria o cenário ideal?”</li></ul>`},
+{t:"Cliente ideal (persona)",h:`<p>Não dá para falar com todo mundo. Descreva em um parágrafo quem mais compra de você:</p><ul><li>Perfil: rotina, idade, onde está.</li><li>Dor principal e desejo principal.</li><li>Medos e objeções mais comuns.</li><li>Onde ele procura informação.</li></ul><p>Use essa descrição para escolher palavras, ofertas e canais.</p>`}]},
+{t:"Persuasão ética",i:"🧲",l:[
+{t:"Os 6 princípios de Cialdini",h:`<p>O psicólogo Robert Cialdini descreveu seis princípios que influenciam decisões:</p><ul><li><b>Reciprocidade:</b> dê algo útil primeiro (uma dica, um material).</li><li><b>Compromisso:</b> peça pequenos “sim” antes do grande.</li><li><b>Prova social:</b> mostre resultados e depoimentos reais.</li><li><b>Autoridade:</b> demonstre experiência com fatos.</li><li><b>Afinidade:</b> encontre pontos em comum.</li><li><b>Escassez:</b> só use quando for verdadeira.</li></ul>`},
+{t:"Histórias que convencem",h:`<p>Pessoas lembram de histórias, não de listas. Use esta estrutura:</p><ul><li><b>Situação:</b> como era antes.</li><li><b>Conflito:</b> o problema que pesava.</li><li><b>Solução:</b> o que mudou.</li><li><b>Resultado:</b> o ganho concreto.</li></ul><p>Regra de ouro: nunca invente números nem depoimentos. Persuasão sem verdade destrói a confiança.</p>`}]},
+{t:"Escrita que vende",i:"✍️",l:[
+{t:"Títulos e fórmula AIDA",h:`<p>Texto que vende segue um caminho: <b>Atenção → Interesse → Desejo → Ação</b>.</p><ul><li>Título com benefício claro: em vez de “Curso de organização”, escreva “Organize sua semana e sobre tempo para o que importa”.</li><li>Frases curtas, uma ideia por frase.</li><li>Termine sempre com uma ação clara: “Chame no WhatsApp”.</li></ul>`},
+{t:"Benefício, PAS e modelo de mensagem",h:`<p>Fale do que o cliente <b>ganha</b>, não só do que o produto <b>tem</b>. Use o PAS: <b>Problema → Agitação → Solução</b>.</p><p>Modelo de primeira mensagem:</p><pre class="tpl">Oi, [nome]! Vi que você [situação do cliente]. Muita gente nessa situação sofre com [problema]. Eu ajudo a [resultado]. Posso te mostrar como funciona em 2 minutos?</pre>`}]},
+{t:"Objeções",i:"🛡️",l:[
+{t:"Quando dizem “tá caro”",h:`<p>Preço quase nunca é o problema real: falta valor percebido. Pergunte antes de responder.</p><ul><li>“Caro em comparação com o quê?”</li><li>Some o custo de <b>não resolver</b> o problema.</li><li>Ofereça opções: parcelar ou começar por um pacote menor.</li></ul><pre class="tpl">Entendo! Posso perguntar: o que pesa mais, o valor ou a dúvida se vai funcionar? Se for o valor, temos uma opção menor para você começar.</pre>`},
+{t:"“Vou pensar” e silêncio",h:`<p>“Vou pensar” costuma esconder uma dúvida. Descubra qual é e combine o próximo passo.</p><ul><li>Pergunte: “O que ainda falta para você decidir?”</li><li>Marque dia e hora para retomar.</li><li>Não pressione: ajude a decidir.</li></ul><pre class="tpl">Combinado, [nome]! Para te ajudar a decidir, qual dúvida ainda ficou? Se preferir, retomo com você na [dia] às [hora].</pre>`}]},
+{t:"Fechamento e pós-venda",i:"🤝",l:[
+{t:"Fechar sem pressão",h:`<p>Muita venda se perde porque ninguém pede o fechamento. Faça um resumo e peça a decisão com clareza.</p><ul><li>Resuma: problema, solução e resultado esperado.</li><li>Use alternativas: “Prefere começar segunda ou quarta?”</li><li>Depois de pedir, <b>espere em silêncio</b>.</li></ul>`},
+{t:"Pós-venda e indicações",h:`<p>A venda continua depois do pagamento. Cliente bem atendido compra de novo e indica.</p><ul><li>Confirme a entrega e acompanhe os primeiros dias.</li><li>Peça feedback e, se foi bom, uma indicação.</li><li>Ofereça upgrades só se forem úteis ao cliente.</li></ul>`}]},
+{t:"Vendas no WhatsApp e redes",i:"💬",l:[
+{t:"Atendimento que converte no WhatsApp",h:`<p>No WhatsApp a venda se decide nos primeiros minutos. Responda rápido, com clareza, e conduza a conversa.</p><ul><li><b>Responda em até 5 minutos</b> no horário comercial; depois disso o interesse esfria.</li><li><b>Abra com contexto:</b> cumprimente, diga seu nome e já faça uma pergunta.</li><li><b>Mensagens curtas:</b> uma ideia por mensagem, sem blocos enormes.</li><li><b>Áudio só quando criar proximidade;</b> nunca para explicar preço ou condições.</li><li><b>Sempre termine com uma pergunta</b> ou próximo passo.</li></ul><p><b>Roteiro pronto:</b></p><p>1) “Oi, [nome]! Aqui é [seu nome]. Vi que você se interessou por [produto]. Posso te perguntar o que você quer resolver primeiro?”<br>2) Escute, resuma o que entendeu e só então apresente a solução.<br>3) “Faz sentido pra você? Posso te mostrar como fica na prática?”</p><p><b>Erro comum:</b> mandar catálogo e preço logo de cara. Sem valor percebido, o cliente só compara preço e some.</p>`},
+{t:"Conteúdo que gera vendas (Instagram, TikTok, Reels)",h:`<p>Conteúdo bom faz o cliente chegar já convencido. Use a regra 4-1: quatro conteúdos de valor para cada um de venda.</p><ul><li><b>Educar:</b> ensine algo que resolve uma dúvida real.</li><li><b>Provar:</b> mostre resultados, bastidores, depoimentos.</li><li><b>Conectar:</b> conte sua história e seus valores.</li><li><b>Vender:</b> oferta clara com chamada para ação.</li></ul><p><b>Estrutura de vídeo curto:</b> gancho (3 primeiros segundos) → problema → solução em 3 passos → chamada para ação (“comenta QUERO”).</p><p><b>Ganchos que funcionam:</b> “O erro que faz você perder vendas”, “3 coisas que eu faria se começasse do zero”, “Ninguém te conta isso sobre [tema]”.</p><p><b>Rotina semanal:</b> 3 a 5 posts, responder todos os comentários e mensagens em até 24h, e salvar perguntas dos clientes como ideias de conteúdo.</p>`}]},
+{t:"Copywriting avançado",i:"✍️",l:[
+{t:"Headlines, ofertas e garantias",h:`<p>A headline decide se a pessoa lê o resto. Ela precisa prometer um benefício específico para um público específico.</p><ul><li><b>Fórmula 1:</b> [Resultado desejado] em [prazo] sem [objeção].</li><li><b>Fórmula 2:</b> Como [público] pode [resultado] mesmo [obstáculo].</li><li><b>Fórmula 3:</b> [Número] erros que impedem você de [resultado].</li><li><b>Específico vence genérico:</b> “Atenda 20 clientes por semana” é melhor que “Venda mais”.</li></ul><p><b>Oferta forte tem 5 partes:</b> promessa clara, o que está incluso, bônus, prazo ou limite real e garantia.</p><p><b>Garantia:</b> reduz o medo de comprar. Exemplos: devolução em 7 ou 30 dias, “resultado ou ajuste grátis”. Só prometa o que você cumpre.</p><p><b>Urgência ética:</b> use prazos e vagas reais. Escassez inventada destrói a confiança.</p>`},
+{t:"Estrutura de uma página de vendas",h:`<p>Uma boa página de vendas conduz a pessoa passo a passo até a decisão:</p><ul><li><b>1. Headline + subheadline:</b> promessa principal.</li><li><b>2. Problema:</b> descreva a dor com as palavras do cliente.</li><li><b>3. Agitação:</b> mostre o custo de não resolver.</li><li><b>4. Solução:</b> apresente seu produto como o caminho.</li><li><b>5. Benefícios:</b> transforme cada característica em resultado.</li><li><b>6. Prova:</b> depoimentos, números, antes e depois.</li><li><b>7. Oferta e preço:</b> ancore o valor antes de mostrar o preço.</li><li><b>8. Garantia.</b></li><li><b>9. Perguntas frequentes:</b> responda as objeções.</li><li><b>10. Chamada final:</b> um botão claro, repetido ao longo da página.</li></ul><p><b>Dica de escrita:</b> escreva como fala, frases curtas, “você” em vez de “nós”, e leia em voz alta para cortar o que soa travado.</p><p><b>Benefício vs característica:</b> “Bateria de 20h” é característica; “Passe o dia fora sem procurar tomada” é benefício.</p>`}]},
+{t:"Prospecção e follow-up",i:"📞",l:[
+{t:"Como prospectar sem ser chato",h:`<p>Prospectar é começar conversas com pessoas que provavelmente têm o problema que você resolve.</p><ul><li><b>Fontes:</b> indicações, clientes antigos, redes sociais, grupos, eventos, comentários no seu conteúdo.</li><li><b>Qualifique antes:</b> a pessoa tem o problema, a necessidade, o orçamento e poder de decisão?</li><li><b>Personalize:</b> cite algo real sobre a pessoa ou o negócio dela.</li><li><b>Dê valor primeiro:</b> uma dica, um elogio específico, uma ideia rápida.</li></ul><p><b>Modelo de primeira mensagem:</b> “Oi, [nome], vi que você [observação real]. Trabalho ajudando [público] a [resultado]. Posso te mandar uma ideia rápida que pode ajudar no [problema]?”</p><p><b>Meta diária:</b> defina uma quantidade fixa (por exemplo, 10 conversas novas) e registre tudo em uma planilha simples.</p>`},
+{t:"Follow-up: onde a venda realmente acontece",h:`<p>A maioria das vendas acontece depois do terceiro ou quarto contato. Quem some depois do primeiro “vou pensar” deixa dinheiro na mesa.</p><ul><li><b>Dia 1:</b> reforce o benefício principal e tire uma dúvida.</li><li><b>Dia 3:</b> mande uma prova (depoimento ou caso).</li><li><b>Dia 7:</b> traga uma novidade ou condição com prazo real.</li><li><b>Dia 14:</b> mensagem de despedida educada, deixando a porta aberta.</li></ul><p><b>Mensagem de despedida que costuma reativar:</b> “[Nome], não quero te incomodar. Vou encerrar por aqui, mas se fizer sentido no futuro, estou à disposição. Posso te perguntar o que te fez adiar?”</p><p><b>Regras:</b> cada contato precisa trazer algo novo, nunca só “e aí, pensou?”; registre a data do próximo passo; e respeite quem disser não claramente.</p>`}]},
+{t:"Preço, oferta e negociação",i:"💰",l:[
+{t:"Como definir e apresentar preço",h:`<p>Preço não é só custo mais lucro. Ele comunica valor.</p><ul><li><b>Calcule o mínimo:</b> custos, impostos, tempo e a margem que você precisa.</li><li><b>Pesquise o mercado,</b> mas não copie: posicione-se pelo resultado que entrega.</li><li><b>Ancoragem:</b> mostre o valor do problema ou da alternativa antes do seu preço.</li><li><b>Três opções:</b> básico, recomendado e premium; a do meio costuma vender mais.</li><li><b>Parcelamento:</b> mostre o valor da parcela quando ajudar a decisão.</li></ul><p><b>Frase para apresentar:</b> “O investimento é de R$ X. Ele inclui A, B e C, e o objetivo é você chegar em [resultado]. Como você prefere pagar?”</p><p>Fale o preço com calma, sem pedir desculpas, e fique em silêncio depois. Quem fala primeiro costuma perder força.</p>`},
+{t:"Negociação e ticket maior",h:`<p>Negociar bem é trocar, não só descontar.</p><ul><li><b>Nunca dê desconto de graça:</b> peça algo em troca (pagamento à vista, indicação, contrato maior).</li><li><b>Conceda aos poucos</b> e com justificativa.</li><li><b>Tire itens, não valor:</b> se o orçamento é menor, ofereça uma versão com menos entregas.</li><li><b>Descubra o limite real:</b> “Qual valor caberia hoje?”</li></ul><p><b>Aumentar o ticket médio:</b></p><ul><li><b>Upsell:</b> versão melhor do mesmo produto.</li><li><b>Cross-sell:</b> produto complementar.</li><li><b>Pacotes:</b> combos com valor percebido maior.</li><li><b>Recorrência:</b> assinatura ou manutenção mensal.</li></ul><p><b>Pós-venda que gera nova venda:</b> acompanhe os primeiros dias, peça feedback, depoimento e indicação, e mantenha contato com novidades úteis.</p>`}]},
+];
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const mem={},st={get(k){try{return localStorage.getItem(k)}catch(e){return mem[k]??null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){mem[k]=v}},del(k){try{localStorage.removeItem(k)}catch(e){delete mem[k]}}};
+const authed=()=>st.get('vp_auth')==='1';
+const flat=[];MODS.forEach((m,i)=>m.l.forEach((l,j)=>flat.push({id:i+'-'+j,m,l})));
+let dn=[];try{dn=JSON.parse(st.get('vp_done')||'[]')}catch(e){}
+let cur=st.get('vp_cur');if(!flat.some(x=>x.id===cur))cur=flat[0].id;
+$('#n1').dataset.n=MODS.length;$('#n2').dataset.n=flat.length;$('#n3').dataset.n=3;
+$('#mp').innerHTML=MODS.map(m=>`<span>🔒 ${m.i} ${m.t}</span>`).join('');
+function cnt(){$$('[data-n]').forEach(e=>{const n=+e.dataset.n,t0=performance.now();(function f(t){const p=Math.min(1,(t-t0)/900);e.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(f)})(t0)})}
+function prog(){const p=Math.round(dn.length/flat.length*100);$('#pb').style.width=p+'%';$('#pt').textContent=dn.length+' de '+flat.length+' aulas ('+p+'%)'}
+function mark(){$$('.ls').forEach(b=>{b.classList.toggle('on',b.dataset.l===cur);b.classList.toggle('dn',dn.includes(b.dataset.l))})}
+function show(id){cur=id;st.set('vp_cur',id);const k=flat.findIndex(x=>x.id===id),f=flat[k],c=$('#ct');
+c.innerHTML=`<div class="tag">${f.m.i} Módulo ${+id.split('-')[0]+1} · ${f.m.t}</div><h2>${f.l.t}</h2>${f.l.h}<div class="nv"><button class="btn" id="dn">${dn.includes(id)?'✓ Aula concluída':'Concluir aula'}</button>${k>0?`<button class="btn o" data-l="${flat[k-1].id}">← Anterior</button>`:''}${k<flat.length-1?`<button class="btn o" data-l="${flat[k+1].id}">Próxima →</button>`:''}</div>`;
+c.classList.remove('sw');void c.offsetWidth;c.classList.add('sw');
+$$('#ct .tpl').forEach(p=>{const b=document.createElement('button');b.className='cp';b.textContent='Copiar modelo';b.onclick=()=>{(navigator.clipboard?navigator.clipboard.writeText(p.innerText):Promise.reject()).then(()=>{b.textContent='Copiado ✓'}).catch(()=>{b.textContent='Selecione e copie'});setTimeout(()=>{b.textContent='Copiar modelo'},1800)};p.after(b)});
+$('#dn').onclick=()=>{dn=dn.includes(id)?dn.filter(x=>x!==id):[...dn,id];st.set('vp_done',JSON.stringify(dn));show(id);prog()};
+mark()}
+function app(){if(!$('#sb').children.length){const cm=flat.find(x=>x.id===cur).m;$('#sb').innerHTML=MODS.map((m,i)=>`<details ${m===cm?'open':''}><summary>${m.i} ${m.t}</summary>${m.l.map((l,j)=>`<button class="ls" data-l="${i}-${j}">${l.t}</button>`).join('')}</details>`).join('')}show(cur);prog()}
+function go(){const h=location.hash||'#/';if(h==='#/membros'&&!authed()){location.hash='#/login';return}
+if(h==='#/login'&&authed()){location.hash='#/membros';return}
+const v=h==='#/membros'?'app':h==='#/login'?'login':'home';
+$$('.view').forEach(e=>{e.hidden=e.id!=='v-'+v});document.body.dataset.v=v;scrollTo(0,0);
+const a=authed();$('#nl').textContent=a?'Área de membros':'Entrar';$('#nl').dataset.go=a?'#/membros':'#/login';$('#out').hidden=!a;
+if(v==='app')app();if(v==='home')cnt()}
+addEventListener('hashchange',go);
+document.addEventListener('click',e=>{const b=e.target.closest('[data-go],[data-sc],[data-l]');if(!b)return;
+if(b.dataset.go){location.hash=b.dataset.go}
+else if(b.dataset.l){show(b.dataset.l);if(innerWidth<821)$('#ct').scrollIntoView({behavior:'smooth'})}
+else{const go2=()=>document.getElementById(b.dataset.sc).scrollIntoView({behavior:'smooth'});if(document.body.dataset.v!=='home'){location.hash='#/';setTimeout(go2,80)}else go2()}});
+$('#out').onclick=()=>{st.del('vp_auth');location.hash='#/'};
+$('#sp').onclick=()=>{const p=$('#p');p.type=p.type==='password'?'text':'password'};
+$('#f').onsubmit=async e=>{e.preventDefault();const u=$('#u').value.trim().toLowerCase(),p=$('#p').value;let ok=false;try{ok=sha('vp1|'+u+'|'+p)===HASH}catch(x){}
+if(ok){st.set('vp_auth','1');$('#err').textContent='';$('#f').reset();location.hash='#/membros'}
+else{const c=$('#f');c.classList.remove('shake');void c.offsetWidth;c.classList.add('shake');$('#err').textContent='Usuário ou senha incorretos. Tente de novo.'}};
+const io='IntersectionObserver'in window?new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.15}):null;
+$$('.rv').forEach(e=>io?io.observe(e):e.classList.add('in'));
+const ch=$('#chat'),rp=()=>{ch.classList.remove('go');void ch.offsetWidth;ch.classList.add('go')};rp();setInterval(rp,9000);
+go();
+</script>
+</body></html>
